@@ -1,26 +1,37 @@
-import { ValidationPipe } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common'; 
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+import { NestFactory } from '@nestjs/core'; 
 
-  // Open CORS
-  app.enableCors();
+import { AppModule } from './app.module'; 
 
-  // เปิดใช้ ValidationPipe
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true, // ตัด field แปลกปลอมทิ้งอัตโนมัติ
-      forbidNonWhitelisted: true, // (Optional) แจ้ง Error ถ้ามี field แปลกปลอม
-      transform: true, // แปลง payload เป็น class ตาม DTO
-      transformOptions: {
-        enableImplicitConversion: true,
-      },
-    }),
-  );
+ 
 
-  await app.listen(3000);
-}
+async function bootstrap() { 
 
-bootstrap();
+  const app = await NestFactory.create(AppModule); 
+
+  // open cors 
+
+  app.enableCors(); 
+
+ 
+
+  // เปิดใช้ ValidationPipe 
+
+  app.useGlobalPipes(new ValidationPipe({ 
+
+    whitelist: true, // ตัด field แปลกปลอมทิ้งอัตโนมัติ 
+
+    forbidNonWhitelisted: true, // (Optional) แจ้ง Error ถ้ามี field แปลกปลอม 
+
+    transform: true, // แปลง payload เป็น class ตาม DTO 
+
+    transformOptions: { enableImplicitConversion: true }, 
+
+  })); 
+
+ 
+
+  await app.listen(3000); 
+
+} 
