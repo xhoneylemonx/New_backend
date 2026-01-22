@@ -1,0 +1,26 @@
+import { ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  // Open CORS
+  app.enableCors();
+
+  // เปิดใช้ ValidationPipe
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true, // ตัด field แปลกปลอมทิ้งอัตโนมัติ
+      forbidNonWhitelisted: true, // (Optional) แจ้ง Error ถ้ามี field แปลกปลอม
+      transform: true, // แปลง payload เป็น class ตาม DTO
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
+    }),
+  );
+
+  await app.listen(3000);
+}
+
+bootstrap();
