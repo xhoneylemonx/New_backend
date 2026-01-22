@@ -13,6 +13,8 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity'; 
 
 import { safeUnlinkByRelativePath } from '../common/utils/file.utils'; 
+import { async } from 'rxjs';
+import { string, file } from 'zod';
 
  
 
@@ -72,4 +74,14 @@ import { safeUnlinkByRelativePath } from '../common/utils/file.utils';
 
   } 
 
+
+
+function toPublicImagePath(filePath: any, string: any) {
+  throw new Error('Function not implemented.');
+}
+
+
+function create(dto: any, CreateProductDto: typeof CreateProductDto, arg2: any) {
+  throw new Error('Function not implemented.');
+}
  
